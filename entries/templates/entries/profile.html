@@ -1,0 +1,140 @@
+{% extends "entries/base.html" %}
+{% block content %}
+<style>
+  label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+textarea{
+  display: block;
+    width: 100%;
+    height: auto;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+input{
+  display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+</style>
+<!--Tabs-->
+<ul class="nav nav-tabs md-tabs" id="myTabEx" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active show" id="home-tab-ex" data-toggle="tab" href="#home-ex" role="tab" aria-controls="home-ex"
+      aria-selected="true">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab-ex" data-toggle="tab" href="#profile-ex" role="tab" aria-controls="profile-ex"
+      aria-selected="false">Edit Profile</a>
+  </li>
+</ul>
+<div class="tab-content pt-5" id="myTabContentEx">
+  <div class="tab-pane fade active show" id="home-ex" role="tabpanel" aria-labelledby="home-tab-ex">
+    <div class="container my-5">
+      <section>
+        
+        <div class="card mb-4">
+          
+          <div class="row">
+    
+            <div class="col-md-6">
+              {% if user.Profile.Profile_image %}
+            <img class="img-fluid rounded-left" src="{{ user.Profile.Profile_image.url }}">{% endif %}
+            </div>
+    
+            <div class="col-md-6 p-5 align-self-center">
+    
+              <h5 class="font-weight-normal mb-3">{{ user.username }}</h5>
+    
+    
+              <ul class="list-unstyled font-small mt-5 mb-0">
+                <li>
+                  <p class="text-uppercase mb-2"><strong>Bio</strong></p>
+                  <p class="text-muted mb-4">{{user.Profile.Bio}}</p>
+                </li>
+                <li>
+                  <p class="text-uppercase mb-2"><strong>Full Name</strong></p>
+                  <p class="text-muted mb-4">{{user.Profile.Full_Name}}</p>
+                </li>
+    
+                <li>
+                  <p class="text-uppercase mb-2"><strong>Joined</strong></p>
+                  <p class="text-muted mb-4">{{user.Profile.Registration_date}}</p>
+                </li>
+    
+                
+                <li>
+                  <p class="text-uppercase mt-4 mb-2"><strong>Social Media</strong></p>
+                  <div class="d-flex justify-content-start">
+                    <a class="text-muted pr-3" href="{{user.Profile.Facebook_link}}"><i class="fab fa-facebook-f"></i></a>
+                    <a class="text-muted pr-3" href="{{user.Profile.Instagram_link}}"><i class="fab fa-instagram"></i></a>
+                    <a class="text-muted pr-3" href="{{user.Profile.Twitter_link}}"><i class="fab fa-twitter"></i></a>
+                  </div>
+                </li>
+    
+              </ul>
+    
+            </div>
+    
+          </div>
+    
+        </div>
+    
+      </section>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="profile-ex" role="tabpanel" aria-labelledby="profile-tab-ex">
+      <div class="container my-5">
+        <section>
+          
+          <div class="card mb-4">
+            
+            <div class="row">
+      
+              <div class="col-md-4" style="background-image:url('../../static/images/2668420.jpg');">
+              </div>
+      
+              <div class="col-md-8 p-5 align-self-center">
+      
+                <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <fieldset class="form-group">
+                      <legend class="border-bottom mb-4">Profile Info</legend>
+                      {{ u_form}}
+                      {{ p_form }}
+                  </fieldset>
+                  <div class="form-group">
+                      <button class="btn btn-outline-info" type="submit">Update</button>
+                  </div>
+              </form>
+              </div>
+      
+            </div>
+      
+          </div>
+      
+        </section>
+      </div>
+  </div>
+</div>
+<!--/Tabs-->
+{% endblock content %}

@@ -1,0 +1,123 @@
+{% extends "entries/base.html" %}
+{%  block content %}
+<header>
+
+  <!-- Full Page Intro -->
+  <div class="view ">
+    <!-- Mask & flexbox options-->
+    <div class="mask">
+      <!-- Content -->
+      <div class="container">
+        <!--Grid row-->
+        <div class="row align-items-center h-100">
+          <!--Grid column-->
+          <div class="col-md-6">
+            <h1 class="mb-4">Find the <span style="color: #91f2ff;">best rated</span><br><span style="color: #3dabc2;">restaurants</span> near you.</h1>
+            <p class="mb-4 pb-2 black-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vitae, culpa qui officia deserunt laborum fuga similique mollit id quos aperiam proident non ut rerum debitis.</p>
+          	<button type="button" class="btn btn-rounded btn-md ml-md-0" style="background-color: #91f2ff;">Get started</button>
+          </div>
+          <!--Grid column-->
+       
+          <!--Grid column-->
+          <div class="col-md-6">
+            <img src="../../static/images/drawkit-developer-woman-monochrome.svg" alt="" class="img-fluid">
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+  </div>
+  <!-- Full Page Intro -->
+  
+</header>
+
+
+<!-- Main navigation -->  
+<div class="container mt-5">
+
+  
+  <!--Section: Content-->
+  <section class="dark-grey-text">
+ <div class="row">
+      <div class="col-8">
+        <div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+          <!-- Content -->
+          <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4" style="margin-top:-200px">
+            <div>
+              <h3 class="card-title pt-2"><strong>Register and add a post</strong></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                Odit sed qui, dolorum!.</p>
+              <a class="btn btn-pink" href="{% url 'register' %}"><i class="fas fa-clone left"></i> Register</a>
+            </div>
+          </div>
+        
+        </div>
+        
+    <!-- Section heading -->
+    <h2 class="font-weight-bold mb-4 w-responsive pb-2 text" style="color: blue;margin-top: 30px;">Recent posts</h2>
+    <!-- Section description -->
+    <p class="w-responsive mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.</p>
+   
+        {% for entry in blog_entries %}
+  	<!-- Grid row -->
+    <div class="row align-items-center">
+
+      <!-- Grid column -->
+      <div class="col-lg-5 col-xl-4">
+
+        <!-- Featured image -->
+        <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4" style="box-shadow: none !important;">
+          <img class="img-fluid" style="width: 370px;height: 250px;box-shadow: none;" src="{{entry.picture.url}}" alt="Sample image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+      
+      <!-- Grid column -->
+      <div class="col-lg-7 col-xl-8">
+        <p class="grey-text" style="font-size: 12px;">{{entry.entry_category}}</p>
+        <!-- Post title -->
+        <h2 class="black-text" style="padding-left: 20px;font-weight: 400;font-size:20px;border-left: 2px solid blue;"><a class="black-text" href="/entry/{{entry.id}}/">{{entry.entry_title}}</a></h4>
+        <!-- Excerpt -->
+        <p class="dark-grey-text" style="font-size: 15px;">{{entry.entry_text|truncatechars:100}}</p>
+        <!-- Post data -->
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+    <p></p>
+    {% endfor %}
+      </div>
+      <div class="col-4">
+        <h2 class="font-weight-bold mb-4 w-responsive pb-2 text" style="color: blue;margin-top: -190px;">Categories</h2>
+        {%  for cat in categories %}
+        <div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+          <!-- Content -->
+          <div class="text-white text-center d-flex align-items-center py-5 px-4">
+              <a href="/category/{{cat.id}}/" class="btn btn-pink btn-sm"><i class="fas fa-clone left"></i> {{cat.name}}</a>
+          </div>
+        
+        </div>
+        <p></p>
+        {% endfor %}
+      </div>
+    </div>  
+    
+  </section>
+  <!--Section: Content-->
+</div>
+    
+
+
+    {% endblock content %}

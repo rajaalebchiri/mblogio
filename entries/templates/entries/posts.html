@@ -1,0 +1,52 @@
+{% extends "entries/base.html" %}
+{%  block content %}
+{% for entry in posts %}
+      <!-- Grid row -->
+      <div class="container my-5 py-5 z-depth-1">
+
+
+        <!--Section: Content-->
+        <section class="text-center px-md-5 mx-md-5 dark-grey-text">
+     
+          <!--Grid row-->
+          <div class="row">
+    
+            <!--Grid column-->
+            <div class="col-lg-6 mb-lg-0 mb-md-4">
+    
+              <!--Image-->
+              <div class="view overlay z-depth-1-half">
+                <img src="{{entry.picture.url}}" class="img-fluid"
+                  alt="">
+                <a href="#">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+    
+            </div>
+            <!--Grid column-->
+    
+            <!--Grid column-->
+            <div class="col-lg-6 ">
+    
+              <h3 class="font-weight-bold">{{entry.entry_title}}</h3>
+    
+              <p class="text-muted">{{entry.entry_text|truncatechars:100}}</p>
+    
+              <a class="btn btn-info btn-md waves-effect" href="/entry/{{entry.id}}/" role="button">Read More</a>
+    
+            </div>
+            <!--Grid column-->
+    
+          </div>
+          <!--Grid row-->
+    
+        </section>
+        <!--Section: Content-->
+    
+    
+      </div>
+    <!-- Grid row -->
+    <p></p>
+    {% endfor %}
+    {% endblock content %}

@@ -1,0 +1,13 @@
+.navbar{
+  background-color:transparent;
+  box-shadow: none;
+}
+html,
+body,
+header,
+.view {
+  height: 100%;
+}
+.colorpro{
+  background-color:#346E75;
+}

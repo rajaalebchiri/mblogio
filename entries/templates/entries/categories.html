@@ -1,0 +1,39 @@
+{% extends "entries/base.html" %}
+{%  block content %}
+  
+  <div class="site-section ">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-12">
+            <h2>Categories</h2>
+              {% for entry in blog_entries %}
+
+              <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg)">
+
+                <!-- Content -->
+                <a href="/category/{{entry.id}}/">
+                  <div class="text-white d-flex h-100 mask blue-gradient-rgba">
+                    <div class="first-content align-self-center p-3">
+                      <h3 class="card-title">{{entry.name}}</h3>
+                      <p class="lead mb-0">Click on this card to see Posts </p>
+                    </div>
+                    <div class="second-content align-self-center mx-auto text-center">
+                      <i class="fas fa-angle-double-right"></i>
+                    </div>
+                  </div>
+                </a>
+      
+              </div>
+              <p></p>
+              <p></p>
+              {% endfor %}
+              <h5>
+                <a href="/create_category" class="btn btn-default">Add a category <i class="fas fa-magic ml-1"></i></a>
+              </h5> 
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock content %}

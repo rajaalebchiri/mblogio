@@ -1,0 +1,96 @@
+{% extends "entries/base.html" %}
+{% block content %}
+<div class="container my-5 py-5 z-depth-1">
+
+
+  <!--Section: Content-->
+  <section class="text-center px-md-5 mx-md-5 dark-grey-text">
+
+    <!--Grid row-->
+    <div class="row">
+
+     <div class="col-lg-12 ">
+
+        <h3 class="font-weight-bold">Posts by {{ view.kwargs.username }}</h3>
+
+        {% for post in posts %}
+        <div class="container mt-5">
+
+
+          <!--Section: Content-->
+          <section class="">
+        
+            <!-- Grid row -->
+            <div class="row">
+        
+              <!-- Grid column -->
+              <div class="col-lg-5 col-md-12 mb-lg-0 mb-4">
+        
+                <!-- Featured image -->
+                <div class="view overlay rounded z-depth-1 mb-lg-0 mb-4">
+                  <img class="img-fluid" src="{{post.entry_author.Profile.Profile_image.url}}" alt="Sample image">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+        
+              </div>
+              <!-- Grid column -->
+        
+              <!-- Grid column -->
+              <div class="col-lg-7 col-md-6 mb-md-0 mb-4 mt-xl-4">
+        
+                 <h3 class="font-weight-normal mb-4">{{post.entry_title}}</h3>
+                 <p class="text-muted">
+                   {{post.entry_text|truncatechars:100}}
+                 </p>
+                 <a class="btn btn-outline-primary mx-0" href="/entry/{{entry.id}}/">Read More <i class="fas fa-arrow-right fs-9 ml-2"></i></a>
+        
+              </div>
+              <!-- Grid column -->
+        
+            </div>
+            <!-- Grid row -->
+        
+          </section>
+          <!--Section: Content-->
+        
+        
+        </div>
+    {% endfor %}
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+  </section>
+  <!--Section: Content-->
+
+
+</div>
+
+{% endblock content %}
